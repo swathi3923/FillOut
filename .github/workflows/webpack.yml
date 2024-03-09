@@ -1,23 +1,8 @@
-name: indexJS with Webpack
+name: Simple Node.js App
 
-on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [14.x, 16.x, 18.x]
-
-    steps:
-    - uses: actions/checkout@v4
-
-    - name: Use index.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v4
-      with:
-        node-version: ${{ matrix.node-version }}
+services:
+  - name: web
+    env:
+      - key: PORT
+        value: 3000
+    command: npm start
